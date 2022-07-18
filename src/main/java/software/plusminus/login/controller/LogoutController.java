@@ -14,7 +14,7 @@ public class LogoutController {
     
     private List<Authenticator> authenticators;
     
-    @PostMapping(name = "/logout", produces = "text/html")
+    @PostMapping(path = "/logout", produces = "text/html")
     public String logout(HttpServletResponse response) {
         authenticators.stream()
                 .map(a -> a.tokenPlace().getCookiesKey())

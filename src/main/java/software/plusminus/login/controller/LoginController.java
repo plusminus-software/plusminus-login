@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import software.plusminus.authentication.annotation.Public;
 import software.plusminus.authentication.service.AuthenticationService;
 import software.plusminus.authentication.service.Authenticator;
 import software.plusminus.login.exception.IncorrectCredentialsException;
@@ -19,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 
+@Public
 @Controller
 public class LoginController {
-
 
     public static final String RELATIVE_URI_REGEX = "^(?!www\\.|(?:http|ftp)s?://|[A-Za-z]:\\\\|//).*";
 
@@ -39,7 +40,7 @@ public class LoginController {
         Security security = loginService.login(email, password);
         if (security == null) {
             model.addAttribute("error", "Invalid username or password!");
-            return "index";
+            return "index"; //TODO get login page templateName instead of "index"
         }
         Map.Entry<Authenticator, String> token = getToken(security, a -> a.tokenPlace().getCookiesKey() != null);
         setCookies(response, token);

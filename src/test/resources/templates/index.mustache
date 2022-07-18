@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <form method="post"
+              action="/login{{#redirect}}?redirect={{.}}{{/redirect}}" accept-charset="UTF-8">
+              
+            {{#error}}<div id="error" style="color: red">{{.}}</div>{{/error}}
+    
+            <div>
+                <label for="email">Email</label>
+                <input type="email"
+                       id="email"
+                       name="email"
+                       placeholder="Email"
+                       required
+                       autofocus="true">
+            </div>
+            <div>
+                <labelfor="password">Password</label>
+                <input type="password"
+                       id="password"
+                       name="password"
+                       placeholder="Password"
+                       required>
+            </div>
+            <div>
+                <button id="submit" type="submit">Submit</button>
+            </div>
+        </form>
+    </body>
+</html>
